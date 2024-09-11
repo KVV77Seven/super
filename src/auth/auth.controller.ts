@@ -38,12 +38,11 @@ export class AuthController {
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    console.log(req.cookies);
-    // const refreshToken: string = req.cookies?.['refresh_token'] || 'null';
-    // res.clearCookie('refresh_token');
-    // res.clearCookie('access_token');
+    const refreshToken: string = req.cookies?.['refresh_token'] || 'null';
+    res.clearCookie('refresh_token');
+    res.clearCookie('access_token');
 
-    // await this.authService.logout(dto, refreshToken);
+    await this.authService.logout(dto, refreshToken);
     res.status(HttpStatus.OK);
     return [];
   }
